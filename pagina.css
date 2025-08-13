@@ -1,0 +1,227 @@
+/* Ajusta el body para que no tenga altura fija */
+body {
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 255, 255);
+    font-family: 'Rock Salt', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box; 
+
+    background:
+      linear-gradient(rgba(83, 83, 83, 0.616), rgba(19, 19, 19, 0.301)),
+      url('/enlacesMatito/img/background.png');
+    background-size: cover;
+    background-position: center;
+}
+.icon-img {
+    width: 50px;      /* ajusta según prefieras */
+    height: 50px;
+    object-fit: contain;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+/* Container con ancho máximo, pero adaptable */
+.container {
+    text-align: center;
+    width: 100%;       
+    max-width: 400px;  
+    box-sizing: border-box;
+}
+
+/* Logo ajustable */
+.logo-container {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto; /* Centrar horizontalmente */
+    perspective: 1000px; 
+    transform-style: preserve-3d;
+}
+.logo, .logo-chino-dibujo {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+/* Ocultamos la trasera inicialmente */
+.logo-chino-dibujo {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover: Mostrar la trasera */
+.logo-container:hover .logo {
+  opacity: 0;
+}
+
+.logo-container:hover .logo-chino-dibujo {
+  opacity: 1;
+  animation: glitch 1s infinite;
+  clip-path: inset(0 0 0 0);
+}
+
+/* Animación glitch */
+@keyframes glitch {
+  0% {
+    clip-path: inset(10% 0 85% 0);
+    transform: translate(-2px, -2px) skew(-0.5deg);
+    filter: drop-shadow(2px 0 red);
+  }
+  20% {
+    clip-path: inset(85% 0 5% 0);
+    transform: translate(2px, 2px) skew(0.5deg);
+    filter: drop-shadow(-2px 0 cyan);
+  }
+  40% {
+    clip-path: inset(40% 0 43% 0);
+    transform: translate(-2px, 2px) skew(-0.5deg);
+    filter: drop-shadow(2px 0 red);
+  }
+  60% {
+    clip-path: inset(20% 0 70% 0);
+    transform: translate(2px, -2px) skew(0.5deg);
+    filter: drop-shadow(-2px 0 cyan);
+  }
+  80% {
+    clip-path: inset(85% 0 5% 0);
+    transform: translate(-2px, 2px) skew(-0.5deg);
+    filter: drop-shadow(2px 0 red);
+  }
+  100% {
+    clip-path: inset(10% 0 85% 0);
+    transform: translate(0, 0) skew(0deg);
+    filter: none;
+  }
+}
+/* .logo,
+.logo-chino-dibujo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease;
+}
+.logo {
+   transform: rotateY(0deg);
+   filter: drop-shadow(0 0 10px #000000);
+}
+.logo-chino-dibujo {
+    transform: rotateY(180deg);
+    filter: drop-shadow(0 0 10px #ff0000);
+}
+
+.logo-container:hover .logo {
+    transform: rotateY(-180deg);
+}
+
+.logo-container:hover .logo-chino-dibujo {
+    transform: rotateY(0deg);
+} */
+
+/* Titulos con tamaño relativo y responsive */
+h1 {
+    margin-bottom: 10px;
+    font-size: clamp(28px, 5vw, 40px);/* ajusta entre 28 y 40px según pantalla */
+}
+
+p {
+    margin-bottom: 25px;
+    color: #d4d3d3;
+    font-size: clamp(16px, 3vw, 20px);
+}
+
+/* Botones responsivos y adaptables */
+.link-btn {
+    display: flex; /* <- Falta */
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #ffffff;
+    padding: 14px 20px;
+    margin: 12px 0;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #000000;
+    width: 100%;
+}
+
+
+
+.link-btn i {
+    font-size: clamp(20px, 4vw, 28px);
+    color: #000000;
+}
+
+.link-btn:hover,
+.link-btn:focus {
+    border-color: #e40e0e;
+    cursor: pointer;
+}
+
+.link-btn:hover i,
+.link-btn:focus i {
+  color: #ff1e00; 
+}
+@keyframes aparecerLogo {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes aparecerBoton {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes moverFondo {
+    0% {
+        background-position: 0 0, 0 0; 
+    }
+    100% {
+        background-position: 0 0, 100% 100%; 
+    }
+}
+@media (max-width: 320px) {
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+    .link-btn {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+}
+@media (min-width: 600px) and (max-width: 900px) {
+    .container {
+        max-width: 600px;
+    }
+    .logo {
+        width: 140px;
+        height: 140px;
+    }
+    h1 {
+        font-size: 48px;
+    }
+    .link-btn {
+        font-size: 24px;
+    }
+}
