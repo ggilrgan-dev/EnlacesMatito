@@ -17,8 +17,8 @@ body {
     background:
       linear-gradient(rgba(63, 63, 63, 0.616), rgba(19, 19, 19, 0.301)),
       url('img/background.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% 100%;
+    animation: zoomFondo 60s ease-in-out infinite alternate;
 }
 
 /* ===== Iconos ===== */
@@ -27,6 +27,7 @@ body {
     height: 40px;
     object-fit: contain;
     vertical-align: middle;
+    margin-right: 12px; /* espacio entre icono y texto */
 }
 
 /* ===== Container ===== */
@@ -59,13 +60,23 @@ body {
     top: 0;
     left: 0;
     backface-visibility: hidden;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.6s ease; /* crossfade suave */
 }
 
-.logo-chino-dibujo { opacity: 0; }
-.logo { filter: drop-shadow(0 0 10px #ffffff); }
+.logo { 
+    filter: drop-shadow(0 0 10px #ffffff); 
+    opacity: 1; /* inicial visible */
+}
 
-.logo-container:hover .logo { opacity: 0; }
+.logo-chino-dibujo { 
+    opacity: 0; 
+}
+
+/* Hover: crossfade + glitch */
+.logo-container:hover .logo {
+    opacity: 0;
+}
+
 .logo-container:hover .logo-chino-dibujo {
     opacity: 1;
     animation: glitch 4s infinite;
@@ -86,17 +97,15 @@ p {
     animation: aparecerTexto 0.8s ease forwards;
     animation-delay: 0.5s;
 }
-.link-btn .icon-img {
-    margin-right: 12px; /* espacio entre el icono y el texto */
-}
+
 /* ===== Botones ===== */
 .link-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 70%;
-    max-width: 400px;      /* ancho del marco */
-    aspect-ratio: 2 / 1;   /* proporción de la imagen 400x200 */
+    max-width: 400px;
+    aspect-ratio: 2 / 1;
     padding: 0;
     font-weight: bold;
     font-size: clamp(14px, 3vw, 18px);
@@ -107,16 +116,16 @@ p {
     text-decoration: none;
     position: relative;
     overflow: hidden;
-    transition: filter 0.3s ease, color 0.3s ease;
-    opacity: 0; /* importante para la animación */
-    animation: aparecerBoton 0.8s ease forwards; /* aplica la animación */
+    transition: filter 0.8s ease, text-shadow 0.8s ease, color 0.3s ease;
+    opacity: 0; /* para animación */
+    animation: aparecerBoton 0.8s ease forwards;
 }
 
 /* ===== Neón solo en hover ===== */
 .link-btn:hover,
 .link-btn:focus {
-    color: currentColor; /* asegura que el drop-shadow tome el color correcto */
-    filter: drop-shadow(0 0 12px currentColor);
+    color: currentColor;
+    filter: drop-shadow(0 0 6px currentColor);
     text-shadow: 0 0 2px currentColor, 0 0 10px currentColor;
 }
 
@@ -150,7 +159,12 @@ p {
 @keyframes aparecerLogo { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
 @keyframes aparecerTexto { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 @keyframes aparecerBoton { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
-
+@keyframes moverFondo {
+    0% { background-position: 0 0; }
+    50% { background-position: 100px 50px; } /* ajusta según necesidad */
+    100% { background-position: 0 0; }
+}
+@keyframes zoomFondo { 0% { background-size: 100% 100%; } 100% { background-size: 110% 110%; }}
 /* ===== Media Queries ===== */
 @media (max-width: 400px) { .link-btn { font-size: 14px; } }
 @media (min-width: 401px) and (max-width: 900px) { .link-btn { font-size: 16px; } }
