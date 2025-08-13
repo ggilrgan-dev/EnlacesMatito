@@ -63,7 +63,7 @@ body {
     top: 0;
     left: 0;
     backface-visibility: hidden;
-    transition: opacity 0.6s ease-in-out;
+    transition: opacity 1.2s ease-in-out;
 }
 
 .logo {
@@ -83,9 +83,7 @@ body {
 
 .logo-container:hover .logo-chino-dibujo {
     opacity: 1;
-    animation-play-state: running; /* inicia glitch solo durante hover */
-    /* animation: glitch 4s infinite;
-    clip-path: inset(0 0 0 0); */
+    animation-play-state: running;
 }
 
 /* ===== Titulos ===== */
