@@ -12,14 +12,14 @@ body {
     box-sizing: border-box; 
 
     background:
-      linear-gradient(rgba(97, 83, 83, 0.616), rgba(19, 19, 19, 0.301)),
+      linear-gradient(rgba(22, 22, 22, 0.616), rgba(19, 19, 19, 0.301)),
       url('img/background.png');
     background-size: cover;
     background-position: center;
 }
 .icon-img {
-    width: 50px;      /* ajusta según prefieras */
-    height: 50px;
+    width: 40px;      /* ajusta según prefieras */
+    height: 40px;
     object-fit: contain;
     margin-right: 8px;
     vertical-align: middle;
