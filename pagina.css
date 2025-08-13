@@ -74,14 +74,12 @@ body {
 
 /* ===== Titulos ===== */
 h1 {
-    margin-bottom: 10px;
     font-size: clamp(20px, 6vw, 48px);
     opacity: 0;
     animation: aparecerTexto 0.8s ease forwards;
     animation-delay: 0.5s;
 }
 p {
-    margin-bottom: 25px;
     color: #a8a8a8;
     font-size: clamp(12px, 3vw, 20px);
     opacity: 0;
@@ -98,7 +96,6 @@ p {
     width: 70%;
     max-width: 400px;      /* ancho del marco */
     aspect-ratio: 2 / 1;   /* proporción de la imagen 400x200 */
-    margin: 12px auto;
     padding: 0;
     font-weight: bold;
     font-size: clamp(14px, 3vw, 18px);
@@ -116,6 +113,7 @@ p {
 .link-btn:hover,
 .link-btn:focus {
     color: currentColor; /* asegura que el drop-shadow tome el color correcto */
+    filter: drop-shadow(0 0 12px currentColor);
 }
 
 .link-btn:hover img {
