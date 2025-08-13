@@ -57,6 +57,7 @@ body {
 .logo-chino-dibujo {
   opacity: 0;
   transition: opacity 0.3s ease;
+  filter: drop-shadow();
 }
 
 /* Hover: Mostrar la trasera */
