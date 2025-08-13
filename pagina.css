@@ -108,6 +108,8 @@ p {
     position: relative;
     overflow: hidden;
     transition: filter 0.3s ease, color 0.3s ease;
+    opacity: 0; /* importante para la animación */
+    animation: aparecerBoton 0.8s ease forwards; /* aplica la animación */
 }
 
 /* ===== Neón solo en hover ===== */
