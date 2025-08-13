@@ -1,15 +1,18 @@
-/* Ajusta el body para que no tenga altura fija */
+/* ===== Box-sizing global ===== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* ===== Body ===== */
 body {
     margin: 0;
-    padding: 0;
-    color: rgb(255, 255, 255);
+    padding: 20px;
+    color: #fff;
     font-family: 'Rock Salt', cursive;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box; 
 
     background:
       linear-gradient(rgba(22, 22, 22, 0.616), rgba(19, 19, 19, 0.301)),
@@ -17,221 +20,136 @@ body {
     background-size: cover;
     background-position: center;
 }
+
+/* ===== Iconos ===== */
 .icon-img {
-    width: 40px;      /* ajusta según prefieras */
+    width: 40px;
     height: 40px;
     object-fit: contain;
-    margin-right: 8px;
     vertical-align: middle;
 }
-/* Container con ancho máximo, pero adaptable */
+
+/* ===== Container ===== */
 .container {
     text-align: center;
-    width: 100%;       
-    max-width: 400px;  
-    box-sizing: border-box;
+    width: 100%;
+    max-width: 400px;
+    padding: 0 15px;
+    margin: 0 auto;
 }
 
-/* Logo ajustable */
+/* ===== Logo ===== */
 .logo-container {
     position: relative;
-    width: 180px;
-    height: 180px;
-    margin: 0 auto; /* Centrar horizontalmente */
-    perspective: 1000px; 
+    width: clamp(100px, 30vw, 180px);
+    height: clamp(100px, 30vw, 180px);
+    margin: 0 auto 20px;
+    perspective: 1000px;
     transform-style: preserve-3d;
+
+    opacity: 0;
+    animation: aparecerLogo 0.8s ease forwards;
 }
+
 .logo, .logo-chino-dibujo {
-  position: absolute;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  top: 0;
-  left: 0;
-  backface-visibility: hidden;
-  transition: opacity 0.3s ease;
-  opacity: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    transition: opacity 0.3s ease;
 }
 
-/* Ocultamos la trasera inicialmente */
-.logo-chino-dibujo {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.logo {
-   filter: drop-shadow(0 0 10px #ffffff);
-}
+.logo-chino-dibujo { opacity: 0; }
+.logo { filter: drop-shadow(0 0 10px #ffffff); }
 
-/* Hover: Mostrar la trasera */
-.logo-container:hover .logo {
-  opacity: 0;
-}
-
+.logo-container:hover .logo { opacity: 0; }
 .logo-container:hover .logo-chino-dibujo {
-  opacity: 1;
-  animation: glitch 1s infinite;
-  clip-path: inset(0 0 0 0);
+    opacity: 1;
+    animation: glitch 4s infinite;
+    clip-path: inset(0 0 0 0);
 }
 
-/* Animación glitch */
-@keyframes glitch {
-  0% {
-    clip-path: inset(10% 0 85% 0);
-    transform: translate(-2px, -2px) skew(-0.5deg);
-    filter: drop-shadow(2px 0 red);
-  }
-  20% {
-    clip-path: inset(85% 0 5% 0);
-    transform: translate(2px, 2px) skew(0.5deg);
-    filter: drop-shadow(-2px 0 cyan);
-  }
-  40% {
-    clip-path: inset(40% 0 43% 0);
-    transform: translate(-2px, 2px) skew(-0.5deg);
-    filter: drop-shadow(2px 0 rgb(156, 17, 17));
-  }
-  60% {
-    clip-path: inset(20% 0 70% 0);
-    transform: translate(2px, -2px) skew(0.5deg);
-    filter: drop-shadow(-2px 0 cyan);
-  }
-  80% {
-    clip-path: inset(85% 0 5% 0);
-    transform: translate(-2px, 2px) skew(-0.5deg);
-    filter: drop-shadow(2px 0 rgb(114, 17, 17));
-  }
-  100% {
-    clip-path: inset(10% 0 85% 0);
-    transform: translate(0, 0) skew(0deg);
-    filter: none;
-  }
-}
-
-/* Titulos con tamaño relativo y responsive */
+/* ===== Titulos ===== */
 h1 {
     margin-bottom: 10px;
-    font-size: clamp(28px, 5vw, 40px);/* ajusta entre 28 y 40px según pantalla */
+    font-size: clamp(20px, 6vw, 48px);
+    opacity: 0;
+    animation: aparecerTexto 0.8s ease forwards;
+    animation-delay: 0.5s;
 }
-
 p {
     margin-bottom: 25px;
     color: #a8a8a8;
-    font-size: clamp(16px, 3vw, 20px);
+    font-size: clamp(12px, 3vw, 20px);
+    opacity: 0;
+    animation: aparecerTexto 0.8s ease forwards;
+    animation-delay: 0.5s;
 }
 
-/* Botones responsivos y adaptables */
+/* ===== Botones ===== */
 .link-btn {
-    display: flex; /* <- Falta */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    color: #ffffff;
-    padding: 14px 20px;
-    margin: 12px 0;
-    border-radius: 12px;
-    text-decoration: none;
+    gap: 10px; /* separa icono y texto */
+    width: 70%;
+    max-width: 400px;      /* ancho del marco */
+    aspect-ratio: 2 / 1;   /* proporción de la imagen 400x200 */
+    margin: 12px auto;
+    padding: 0;
     font-weight: bold;
-    border: 2px solid #000000;
-    width: 100%;
+    font-size: clamp(14px, 3vw, 18px);
+    color: #fff;
+    background: url('img/boton1.png') no-repeat center/cover;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: filter 0.3s ease, color 0.3s ease;
 }
 
-
-
-.link-btn.kick:hover,
-.link-btn.kick:focus {
-    border-color: #00fd00; /* color naranja Kick */
+/* ===== Neón solo en hover ===== */
+.link-btn:hover,
+.link-btn:focus {
+    color: currentColor; /* asegura que el drop-shadow tome el color correcto */
 }
 
-.link-btn.kick:hover i,
-.link-btn.kick:focus i {
-    color: #ff8200;
+.link-btn:hover img {
+    filter: drop-shadow(0 0 12px currentColor);
 }
 
-.link-btn.instagram:hover,
-.link-btn.instagram:focus {
-    border-color: #e1306c; /* color rosa/rojo Instagram */
-}
+/* Colores específicos por plataforma */
+.link-btn.kick:hover { color: #00fd00; }
+.link-btn.instagram:hover { color: #e1306c; }
+.link-btn.discord:hover { color: #5865f2; }
+.link-btn.twitch:hover { color: #9146ff; }
+.link-btn.tiktok:hover { color: #69c9d0; }
 
-.link-btn.instagram:hover i,
-.link-btn.instagram:focus i {
-    color: #e1306c;
-}
+/* ===== Animaciones escalonadas ===== */
+.link-btn:nth-of-type(1) { animation-delay: 1s; }
+.link-btn:nth-of-type(2) { animation-delay: 1.2s; }
+.link-btn:nth-of-type(3) { animation-delay: 1.4s; }
+.link-btn:nth-of-type(4) { animation-delay: 1.6s; }
+.link-btn:nth-of-type(5) { animation-delay: 1.8s; }
 
-.link-btn.discord:hover,
-.link-btn.discord:focus {
-    border-color: #5865f2; /* azul Discord */
+/* ===== Animaciones ===== */
+@keyframes glitch {
+    0% { clip-path: inset(10% 0 85% 0); transform: translate(-2px, -2px) skew(-0.5deg); filter: drop-shadow(2px 0 red); }
+    20% { clip-path: inset(85% 0 5% 0); transform: translate(2px, 2px) skew(0.5deg); filter: drop-shadow(-2px 0 cyan); }
+    40% { clip-path: inset(40% 0 43% 0); transform: translate(-2px, 2px) skew(-0.5deg); filter: drop-shadow(2px 0 rgb(156, 17, 17)); }
+    60% { clip-path: inset(20% 0 70% 0); transform: translate(2px, -2px) skew(0.5deg); filter: drop-shadow(-2px 0 cyan); }
+    80% { clip-path: inset(85% 0 5% 0); transform: translate(-2px, 2px) skew(-0.5deg); filter: drop-shadow(2px 0 rgb(114, 17, 17)); }
+    100% { clip-path: inset(10% 0 85% 0); transform: translate(0, 0) skew(0deg); filter: none; }
 }
+@keyframes aparecerLogo { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes aparecerTexto { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes aparecerBoton { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
-.link-btn.discord:hover i,
-.link-btn.discord:focus i {
-    color: #5865f2;
-}
-
-.link-btn.twitch:hover,
-.link-btn.twitch:focus {
-    border-color: #9146ff; /* morado Twitch */
-}
-
-.link-btn.twitch:hover i,
-.link-btn.twitch:focus i {
-    color: #9146ff;
-}
-
-.link-btn.tiktok:hover,
-.link-btn.tiktok:focus {
-    border-color: #69c9d0; /* celeste TikTok */
-}
-
-.link-btn.tiktok:hover i,
-.link-btn.tiktok:focus i {
-    color: #69c9d0;
-}
-@keyframes aparecerLogo {
-    0% {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-@keyframes aparecerBoton {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-@keyframes moverFondo {
-    0% {
-        background-position: 0 0, 0 0; 
-    }
-    100% {
-        background-position: 0 0, 100% 100%; 
-    }
-}
-@media (max-width: 320px) {
-    .logo {
-        width: 100px;
-        height: 100px;
-    }
-    .link-btn {
-        padding: 12px 15px;
-        font-size: 14px;
-    }
-}
-@media (min-width: 600px) and (max-width: 900px) {
-    .container {
-        max-width: 600px;
-    }
-    .logo {
-        width: 140px;
-        height: 140px;
-    }
-    h1 {
-        font-size: 48px;
-    }
-    .link-btn {
-        font-size: 24px;
-    }
-}
+/* ===== Media Queries ===== */
+@media (max-width: 400px) { .link-btn { font-size: 14px; } }
+@media (min-width: 401px) and (max-width: 900px) { .link-btn { font-size: 16px; } }
+@media (min-width: 901px) { .link-btn { font-size: 18px; } }
