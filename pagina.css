@@ -29,7 +29,7 @@ body {
     height: 40px;
     object-fit: contain;
     vertical-align: middle;
-    margin-right: 12px; /* espacio entre icono y texto */
+    margin-right: 12px;
 }
 
 /* ===== Container ===== */
@@ -63,7 +63,7 @@ body {
     top: 0;
     left: 0;
     backface-visibility: hidden;
-    transition: opacity 0.6s ease;
+    transition: opacity 0.6s ease-in-out;
 }
 
 .logo {
@@ -73,6 +73,8 @@ body {
 
 .logo-chino-dibujo {
     opacity: 0;
+    animation: glitch 4s infinite alternate;
+    animation-play-state: paused;
 }
 
 .logo-container:hover .logo {
@@ -81,8 +83,9 @@ body {
 
 .logo-container:hover .logo-chino-dibujo {
     opacity: 1;
-    animation: glitch 4s infinite;
-    clip-path: inset(0 0 0 0);
+    animation-play-state: running; /* inicia glitch solo durante hover */
+    /* animation: glitch 4s infinite;
+    clip-path: inset(0 0 0 0); */
 }
 
 /* ===== Titulos ===== */
