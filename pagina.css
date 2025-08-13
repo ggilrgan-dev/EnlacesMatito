@@ -86,13 +86,14 @@ p {
     animation: aparecerTexto 0.8s ease forwards;
     animation-delay: 0.5s;
 }
-
+.link-btn .icon-img {
+    margin-right: 12px; /* espacio entre el icono y el texto */
+}
 /* ===== Botones ===== */
 .link-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; /* separa icono y texto */
     width: 70%;
     max-width: 400px;      /* ancho del marco */
     aspect-ratio: 2 / 1;   /* proporción de la imagen 400x200 */
@@ -114,10 +115,11 @@ p {
 .link-btn:focus {
     color: currentColor; /* asegura que el drop-shadow tome el color correcto */
     filter: drop-shadow(0 0 12px currentColor);
+    text-shadow: 0 0 2px currentColor, 0 0 10px currentColor;
 }
 
 .link-btn:hover img {
-    filter: drop-shadow(0 0 12px currentColor);
+    filter: drop-shadow(0 0 1px currentColor);
 }
 
 /* Colores específicos por plataforma */
