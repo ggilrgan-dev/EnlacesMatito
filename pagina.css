@@ -57,7 +57,9 @@ body {
 .logo-chino-dibujo {
   opacity: 0;
   transition: opacity 0.3s ease;
-  filter: drop-shadow();
+}
+.logo {
+   filter: drop-shadow(0 0 10px #ffffff);
 }
 
 /* Hover: Mostrar la trasera */
@@ -86,7 +88,7 @@ body {
   40% {
     clip-path: inset(40% 0 43% 0);
     transform: translate(-2px, 2px) skew(-0.5deg);
-    filter: drop-shadow(2px 0 red);
+    filter: drop-shadow(2px 0 rgb(156, 17, 17));
   }
   60% {
     clip-path: inset(20% 0 70% 0);
@@ -96,7 +98,7 @@ body {
   80% {
     clip-path: inset(85% 0 5% 0);
     transform: translate(-2px, 2px) skew(-0.5deg);
-    filter: drop-shadow(2px 0 red);
+    filter: drop-shadow(2px 0 rgb(114, 17, 17));
   }
   100% {
     clip-path: inset(10% 0 85% 0);
@@ -104,33 +106,6 @@ body {
     filter: none;
   }
 }
-/* .logo,
-.logo-chino-dibujo {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    backface-visibility: hidden;
-    transition: transform 0.6s ease;
-}
-.logo {
-   transform: rotateY(0deg);
-   filter: drop-shadow(0 0 10px #000000);
-}
-.logo-chino-dibujo {
-    transform: rotateY(180deg);
-    filter: drop-shadow(0 0 10px #ff0000);
-}
-
-.logo-container:hover .logo {
-    transform: rotateY(-180deg);
-}
-
-.logo-container:hover .logo-chino-dibujo {
-    transform: rotateY(0deg);
-} */
 
 /* Titulos con tamaño relativo y responsive */
 h1 {
@@ -140,7 +115,7 @@ h1 {
 
 p {
     margin-bottom: 25px;
-    color: #d4d3d3;
+    color: #a8a8a8;
     font-size: clamp(16px, 3vw, 20px);
 }
 
@@ -162,20 +137,54 @@ p {
 
 
 
-.link-btn i {
-    font-size: clamp(20px, 4vw, 28px);
-    color: #000000;
+.link-btn.kick:hover,
+.link-btn.kick:focus {
+    border-color: #00fd00; /* color naranja Kick */
 }
 
-.link-btn:hover,
-.link-btn:focus {
-    border-color: #e40e0e;
-    cursor: pointer;
+.link-btn.kick:hover i,
+.link-btn.kick:focus i {
+    color: #ff8200;
 }
 
-.link-btn:hover i,
-.link-btn:focus i {
-  color: #ff1e00; 
+.link-btn.instagram:hover,
+.link-btn.instagram:focus {
+    border-color: #e1306c; /* color rosa/rojo Instagram */
+}
+
+.link-btn.instagram:hover i,
+.link-btn.instagram:focus i {
+    color: #e1306c;
+}
+
+.link-btn.discord:hover,
+.link-btn.discord:focus {
+    border-color: #5865f2; /* azul Discord */
+}
+
+.link-btn.discord:hover i,
+.link-btn.discord:focus i {
+    color: #5865f2;
+}
+
+.link-btn.twitch:hover,
+.link-btn.twitch:focus {
+    border-color: #9146ff; /* morado Twitch */
+}
+
+.link-btn.twitch:hover i,
+.link-btn.twitch:focus i {
+    color: #9146ff;
+}
+
+.link-btn.tiktok:hover,
+.link-btn.tiktok:focus {
+    border-color: #69c9d0; /* celeste TikTok */
+}
+
+.link-btn.tiktok:hover i,
+.link-btn.tiktok:focus i {
+    color: #69c9d0;
 }
 @keyframes aparecerLogo {
     0% {
