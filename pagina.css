@@ -1,11 +1,9 @@
-/* ===== Box-sizing global ===== */
+/* vrs.@0.1 */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
-
-/* ===== Body ===== */
 body {
     margin: 0;
     padding-top: 12px;
@@ -21,8 +19,6 @@ body {
     background-size: 100% 100%;
     animation: zoomFondo 20s ease-in-out infinite alternate;
 }
-
-/* ===== Iconos ===== */
 .icon-img {
     width: 40px;
     height: 40px;
@@ -30,8 +26,6 @@ body {
     vertical-align: middle;
     margin-right: 12px;
 }
-
-/* ===== Container ===== */
 .container {
     text-align: center;
     width: 100%;
@@ -40,8 +34,6 @@ body {
     margin: 0 auto;
     flex: 1; /* permite que el contenido crezca y empuje el footer */
 }
-
-/* ===== Logo ===== */
 .logo-container {
     position: relative;
     width: clamp(100px, 30vw, 180px);
@@ -52,7 +44,6 @@ body {
     opacity: 0;
     animation: aparecerLogo 0.8s ease forwards;
 }
-
 .logo,
 .logo-chino-dibujo {
     position: absolute;
@@ -64,18 +55,15 @@ body {
     backface-visibility: hidden;
     transition: opacity 1.2s ease-in-out;
 }
-
 .logo {
     filter: drop-shadow(0 0 10px #fff);
     opacity: 1;
 }
-
 .logo-chino-dibujo {
     opacity: 0;
     animation: glitch 4s infinite alternate;
     animation-play-state: paused;
 }
-
 .logo-container:hover .logo {
     opacity: 0;
 }
@@ -83,15 +71,12 @@ body {
     opacity: 1;
     animation-play-state: running;
 }
-
-/* ===== Titulos ===== */
 h1 {
     font-size: clamp(20px, 6vw, 48px);
     opacity: 0;
     animation: aparecerTexto 0.8s ease forwards;
     animation-delay: 0.5s;
 }
-
 p {
     color: #a8a8a8;
     font-size: clamp(12px, 3vw, 20px);
@@ -99,8 +84,6 @@ p {
     animation: aparecerTexto 0.8s ease forwards;
     animation-delay: 0.5s;
 }
-
-/* ===== Botones ===== */
 .link-btn {
     display: inline-flex;
     align-items: center;
@@ -122,31 +105,25 @@ p {
     opacity: 0;
     animation: aparecerBoton 0.8s ease forwards;
 }
-
 .link-btn:hover,
 .link-btn:focus {
     color: currentColor;
     filter: drop-shadow(0 0 6px currentColor);
     text-shadow: 0 0 2px currentColor, 0 0 2px currentColor;
 }
-
 .link-btn:hover img {
     filter: drop-shadow(0 0 1px currentColor);
 }
-
 .link-btn.kick:hover { color: #00fd00; }
 .link-btn.instagram:hover { color: #e1306c; }
 .link-btn.discord:hover { color: #5865f2; }
 .link-btn.twitch:hover { color: #9146ff; }
 .link-btn.tiktok:hover { color: #69c9d0; }
-
 .link-btn:nth-of-type(1) { animation-delay: 1s; }
 .link-btn:nth-of-type(2) { animation-delay: 1.2s; }
 .link-btn:nth-of-type(3) { animation-delay: 1.4s; }
 .link-btn:nth-of-type(4) { animation-delay: 1.6s; }
 .link-btn:nth-of-type(5) { animation-delay: 1.8s; }
-
-/* ===== Animaciones ===== */
 @keyframes glitch {
     0% { clip-path: inset(10% 0 85% 0); transform: translate(-2px, -2px) skew(-0.5deg); filter: drop-shadow(2px 0 red); }
     20% { clip-path: inset(85% 0 5% 0); transform: translate(2px, 2px) skew(0.5deg); filter: drop-shadow(-2px 0 cyan); }
@@ -155,19 +132,14 @@ p {
     80% { clip-path: inset(85% 0 5% 0); transform: translate(-2px, 2px) skew(-0.5deg); filter: drop-shadow(2px 0 rgb(114,17,17)); }
     100% { clip-path: inset(10% 0 85% 0); transform: translate(0,0) skew(0deg); filter: none; }
 }
-
 @keyframes aparecerLogo { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
 @keyframes aparecerTexto { 0% { opacity:0; transform: translateY(20px); } 100% { opacity:1; transform: translateY(0); } }
 @keyframes aparecerBoton { 0% { opacity:0; transform: translateY(30px); } 100% { opacity:1; transform: translateY(0); } }
 @keyframes moverFondo { 0% { background-position:0 0; } 50% { background-position:100px 50px; } 100% { background-position:0 0; } }
 @keyframes zoomFondo { 0% { background-size:100% 100%; } 100% { background-size:110% 110%; } }
-
-/* ===== Media Queries ===== */
 @media (max-width: 400px) { .link-btn { font-size: 14px; } }
 @media (min-width: 401px) and (max-width: 900px) { .link-btn { font-size: 16px; } }
 @media (min-width: 901px) { .link-btn { font-size: 18px; } }
-
-/* ===== Footer ===== */
 .footer {
     background: rgba(34, 34, 34, 0.7);
     padding: 10px;
@@ -177,19 +149,16 @@ p {
     width: 100%;
     box-sizing: border-box;
 }
-
 .footer p {
     font-size: 10px;
     margin: 0;
 }
-
 .footer-links a {
     margin: 0 10px;
     color: #be1717;
     text-decoration: none;
     transition: color 0.3s;
 }
-
 .footer-links a.contacto {
     position: relative;
     display: inline-block;
@@ -199,31 +168,27 @@ p {
     font-size: 11px;
     transition: color 0.3s;
 }
-
 .footer-links a.contacto::after {
     content: attr(data-text);
     position: absolute;
-    top: 50%;       /* justo debajo del texto */
+    top: 50%; 
     left: 0;
     width: 100%;
     height: 100%;
     color: #fff;
-    transform: scaleY(-1); /* voltea vertical */
-    opacity: 0;             /* inicialmente invisible */
+    transform: scaleY(-1);
+    opacity: 0;            
     overflow: hidden;
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     mask-mode: alpha;
     -webkit-mask-mode: alpha;
     pointer-events: none;
-    transition: opacity 0.4s ease; /* transición suave */
+    transition: opacity 0.4s ease; 
 }
-
-/* Mostrar reflejo al hover */
 .footer-links a.contacto:hover::after {
     opacity: 0.3;
     color: #9146ff;
-
 }
 .footer-links a.contacto:hover{
     color: #9146ff;
