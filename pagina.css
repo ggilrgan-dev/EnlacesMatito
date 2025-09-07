@@ -15,7 +15,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background:
-        linear-gradient(rgba(29, 29, 29, 0.616), rgba(19, 19, 19, 0.301)),
+        linear-gradient(rgba(2, 2, 2, 0.616), rgba(0, 0, 0, 0.301)),
         url('img/background.png');
     background-size: 100% 100%;
     animation: zoomFondo 20s ease-in-out infinite alternate;
@@ -36,7 +36,6 @@ body {
     padding: 0 15px;
     margin: 0 auto;
     flex: 1;
-    /* permite que el contenido crezca y empuje el footer */
 }
 
 .logo-container {
@@ -110,6 +109,8 @@ p {
 
     font-weight: bold;
     font-size: clamp(10px, 2.5vw, 20px);
+    font-family: 'Rock Salt', cursive;
+    /* ← Agregar esta línea */
     color: #fff;
 
     background: url('img/boton1.png') no-repeat center;
@@ -136,6 +137,10 @@ p {
 
 .link-btn:hover img {
     filter: drop-shadow(0 0 1px currentColor);
+}
+
+.link-btn.cacino:hover {
+    color: #77eb77;
 }
 
 .link-btn.kick:hover {
@@ -176,6 +181,247 @@ p {
 
 .link-btn:nth-of-type(5) {
     animation-delay: 1.8s;
+}
+
+.link-btn:nth-of-type(6) {
+    animation-delay: 2s;
+}
+
+/* ===== MODAL DE VERIFICACIÓN DE EDAD ===== */
+.age-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.267);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.age-modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a1aa2 0%, #2d2d2d 100%);
+    border: 2px solid #ffffff4f;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+    position: relative;
+    /* Animación de entrada del modal */
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+    animation: aparecerModal 0.5s ease forwards;
+}
+
+.modal-title {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(119, 235, 119, 0.849);
+    /* Animación del título */
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: aparecerTextoModal 0.6s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.modal-text {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    /* Animación del texto */
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: aparecerTextoModal 0.6s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.date-input-group {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.date-select {
+    padding: 2px;
+    border: 2px solid #555;
+    border-radius: 8px;
+    background: #333;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Rock Salt', cursive;
+    outline: none;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    /* Animación de los selectores */
+    opacity: 0;
+    transform: translateY(15px);
+    animation: aparecerElementoModal 0.6s ease forwards;
+}
+
+.date-select:focus {
+    border-color: #fcfcfc8f;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.modal-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Rock Salt', cursive;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    /* Animación de los botones */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: aparecerElementoModal 0.6s ease forwards;
+}
+
+.btn-verify {
+    background: linear-gradient(135deg, #99f199, #599c59);
+    color: #000;
+    animation-delay: 0.7s;
+}
+
+.btn-verify:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(119, 235, 119, 0.4);
+}
+
+.btn-cancel {
+    background: linear-gradient(135deg, #666, #444);
+    color: #fff;
+    animation-delay: 0.8s;
+}
+
+.btn-cancel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 10px;
+    display: none;
+    /* Animación para cuando aparece el error */
+    opacity: 0;
+    transform: translateY(-5px);
+}
+
+.warning-text {
+    color: #ff6b6b;
+    font-size: 11px;
+    margin-top: 15px;
+    opacity: 0;
+    /* Animación del texto de advertencia */
+    transform: translateY(10px);
+    animation: aparecerTextoModal 0.6s ease forwards;
+    animation-delay: 0.9s;
+}
+
+.error-message.show {
+    display: block;
+    animation: aparecerError 0.3s ease forwards;
+}
+
+/* Delays escalonados para los selectores */
+.date-select:nth-child(1) {
+    animation-delay: 0.4s;
+}
+
+.date-select:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.date-select:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #464646cb;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #000, #000000);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #000000, #000000);
+}
+
+@keyframes aparecerModal {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes aparecerTextoModal {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aparecerElementoModal {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aparecerError {
+    0% {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes glitch {
@@ -252,20 +498,6 @@ p {
     }
 }
 
-@keyframes moverFondo {
-    0% {
-        background-position: 0 0;
-    }
-
-    50% {
-        background-position: 100px 50px;
-    }
-
-    100% {
-        background-position: 0 0;
-    }
-}
-
 @keyframes zoomFondo {
     0% {
         background-size: 100% 100%;
@@ -273,24 +505,6 @@ p {
 
     100% {
         background-size: 110% 110%;
-    }
-}
-
-@media (max-width: 400px) {
-    .link-btn {
-        font-size: 14px;
-    }
-}
-
-@media (min-width: 401px) and (max-width: 900px) {
-    .link-btn {
-        font-size: 16px;
-    }
-}
-
-@media (min-width: 901px) {
-    .link-btn {
-        font-size: 18px;
     }
 }
 
@@ -354,4 +568,36 @@ p {
 
 .footer-links a.contacto:hover {
     color: #9146ff;
+}
+
+@media (max-width: 400px) {
+    .link-btn {
+        font-size: 14px;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .date-input-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .date-select {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 900px) {
+    .link-btn {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 901px) {
+    .link-btn {
+        font-size: 18px;
+    }
 }

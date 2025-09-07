@@ -15,7 +15,7 @@
     <link rel="icon" href="img/logo3.png" type="image/png">
 </head>
 <body>
-    <main class="container">
+     <main class="container">
         <header class="logo-container">
             <img src="img/logo3.png" alt="Logo principal" class="logo">
             <img src="img/logo4.png" alt="Logo alternativo" class="logo-chino-dibujo">
@@ -25,6 +25,9 @@
         <p>Encuéntrame en:</p>
 
         <nav>
+            <button class="link-btn cacino" id="casinoBtn" type="button">
+                <img src="img/cacino.png" alt="Casino" class="icon-img" /> BC.GAME
+            </button>
             <a class="link-btn kick" href="https://kick.com/matito" target="_blank" rel="noopener noreferrer">
                 <img src="img/kick.png" alt="Kick" class="icon-img" /> Kick
             </a>
@@ -54,6 +57,58 @@
         </div>
     </footer>
 
+    <!-- Modal de Verificación de Edad -->
+    <div class="age-modal" id="ageModal">
+        <div class="modal-content">
+            <h2 class="modal-title">Verificación de Edad</h2>
+            <p class="modal-text">
+                Este enlace es solo para personas mayores de edad.<br>
+                Por favor, ingresa tu fecha de nacimiento para continuar.
+            </p>
+            
+            <div class="date-input-group">
+                <select class="date-select" id="daySelect">
+                    <option value="">Día</option>
+                    <!-- Se llenan con JavaScript -->
+                </select>
+                
+                <select class="date-select" id="monthSelect">
+                    <option value="">Mes</option>
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+                
+                <select class="date-select" id="yearSelect">
+                    <option value="">Año</option>
+                    <!-- Se llenan con JavaScript -->
+                </select>
+            </div>
+            
+            <div class="error-message" id="errorMessage">
+                Por favor completa todos los campos correctamente
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="modal-btn btn-verify" id="verifyBtn">Verificar</button>
+                <button class="modal-btn btn-cancel" id="cancelBtn">Cancelar</button>
+            </div>
+            
+            <p class="warning-text">
+                ⚠️ Debes ser mayor de 18 años para acceder a contenido de casino
+            </p>
+        </div>
+    </div>
+    <script src="pagina.js"></script>
 </body>
 
 </html>
