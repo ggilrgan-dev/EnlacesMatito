@@ -7,15 +7,16 @@
     <meta name="description" content="Página de enlaces de Matito. Encuéntrame en Kick, Instagram, Discord y Twitch.">
 
     <title>Matito</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="pagina.css">
-    
+
     <link rel="icon" href="img/logo3.png" type="image/png">
 </head>
+
 <body>
-     <main class="container">
+    <main class="container">
         <header class="logo-container">
             <img src="img/logo3.png" alt="Logo principal" class="logo">
             <img src="img/logo4.png" alt="Logo alternativo" class="logo-chino-dibujo">
@@ -25,89 +26,104 @@
         <p>Encuéntrame en:</p>
 
         <nav>
-            <button class="link-btn cacino" id="casinoBtn" type="button">
-                <img src="img/cacino.png" alt="Casino" class="icon-img" /> BC.GAME
-            </button>
+            <div class="casino-container">
+                <button class="link-btn casino" id="casinoBtn" type="button">
+                    <img src="img/cacino.png" alt="Casino" class="icon-img" />
+                    BC.GAME
+                </button>
+
+                <!-- Alerta de validación de edad -->
+                <div class="age-alert" id="ageAlert">
+                    <h3>Verificación de Edad</h3>
+                    <p>Para acceder a contenido de casino, debes ser mayor de 18 años.</p>
+
+                    <div class="date-inputs">
+                        <select class="date-select" id="daySelect">
+                            <option value="">Día</option>
+                        </select>
+
+                        <select class="date-select" id="monthSelect">
+                            <option value="">Mes</option>
+                        </select>
+
+                        <select class="date-select" id="yearSelect">
+                            <option value="">Año</option>
+                        </select>
+                    </div>
+                    <div class="alert-error" id="alertError">
+                        Debes ser mayor de 18 años para continuar
+                    </div>
+                    <div class="alert-buttons">
+                        <button class="alert-btn btn-verify" id="verifyAgeBtn">Verificar</button>
+                        <button class="alert-btn btn-cancel" id="cancelAlertBtn">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
             <a class="link-btn kick" href="https://kick.com/matito" target="_blank" rel="noopener noreferrer">
-                <img src="img/kick.png" alt="Kick" class="icon-img" /> Kick
+                <img src="img/kick.png" alt="Kick" class="icon-img" />
+                Kick
             </a>
             <a class="link-btn instagram" href="https://www.instagram.com/matito_shangchi" target="_blank"
                 rel="noopener noreferrer">
-                <img src="img/instagram.png" alt="Instagram" class="icon-img" /> Instagram
+                <img src="img/instagram.png" alt="Instagram" class="icon-img" />
+                Instagram
             </a>
             <a class="link-btn discord" href="https://discord.gg/pq7Nxdy3yv" target="_blank" rel="noopener noreferrer">
-                <img src="img/discord.png" alt="Discord" class="icon-img" /> Discord
+                <img src="img/discord.png" alt="Discord" class="icon-img" />
+                Discord
             </a>
             <a class="link-btn twitch" href="https://www.twitch.tv/matito_m" target="_blank" rel="noopener noreferrer">
-                <img src="img/twitch.png" alt="Twitch" class="icon-img" /> Twitch
+                <img src="img/twitch.png" alt="Twitch" class="icon-img" />
+                Twitch
             </a>
             <a class="link-btn tiktok" href="https://www.tiktok.com/@shan.chi2" target="_blank"
                 rel="noopener noreferrer">
-                <img src="img/tiktok.png" alt="TikTok" class="icon-img" /> TikTok
+                <img src="img/tiktok.png" alt="TikTok" class="icon-img" />
+                TikTok
             </a>
         </nav>
     </main>
+
+    <!-- Modal Informativo -->
+    <!-- Modal Informativo -->
+    <div class="info-modal" id="infoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">BC.GAME Casino</h2>
+                <p class="modal-subtitle">¡Bienvenido a BC.GAME!</p>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-text">
+                    Estás a punto de acceder a una plataforma de casino en línea.
+                    <span class="modal-highlight">BC.GAME</span> ofrece una experiencia de juego segura y emocionante.
+                </div>
+                <img class="modal-imagen-casino" src="img/casino.webp" alt="BC.GAME Casino Preview">
+                <div class="modal-text">
+                    <strong>¡Inscríbete ahora y forma parte de la comunidad!</strong>
+                </div>
+            </div>
+
+            <div class="modal-btn-container">
+                <button class="modal-btn btn-continue" id="continueBtn">Ir a BC.GAME</button>
+                <button class="modal-btn btn-close" id="closeModalBtn">Cerrar</button>
+            </div>
+
+            <p class="warning-text">
+                ⚠️ El juego puede ser adictivo. Juega con responsabilidad.
+            </p>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="footer-content">
             <p>© 2025 ThxGin.</p>
             <div class="footer-links">
-                <a href="https://thxgin.vercel.app/" target="_blank" class="contacto" data-text="Contacto">Contacto</a>
+                <a href="https://thxgin.vercel.app/" target="_blank">Contacto</a>
             </div>
         </div>
     </footer>
-
-    <!-- Modal de Verificación de Edad -->
-    <div class="age-modal" id="ageModal">
-        <div class="modal-content">
-            <h2 class="modal-title">Verificación de Edad</h2>
-            <p class="modal-text">
-                Este enlace es solo para personas mayores de edad.<br>
-                Por favor, ingresa tu fecha de nacimiento para continuar.
-            </p>
-            
-            <div class="date-input-group">
-                <select class="date-select" id="daySelect">
-                    <option value="">Día</option>
-                    <!-- Se llenan con JavaScript -->
-                </select>
-                
-                <select class="date-select" id="monthSelect">
-                    <option value="">Mes</option>
-                    <option value="1">Enero</option>
-                    <option value="2">Febrero</option>
-                    <option value="3">Marzo</option>
-                    <option value="4">Abril</option>
-                    <option value="5">Mayo</option>
-                    <option value="6">Junio</option>
-                    <option value="7">Julio</option>
-                    <option value="8">Agosto</option>
-                    <option value="9">Septiembre</option>
-                    <option value="10">Octubre</option>
-                    <option value="11">Noviembre</option>
-                    <option value="12">Diciembre</option>
-                </select>
-                
-                <select class="date-select" id="yearSelect">
-                    <option value="">Año</option>
-                    <!-- Se llenan con JavaScript -->
-                </select>
-            </div>
-            
-            <div class="error-message" id="errorMessage">
-                Por favor completa todos los campos correctamente
-            </div>
-            
-            <div class="modal-buttons">
-                <button class="modal-btn btn-verify" id="verifyBtn">Verificar</button>
-                <button class="modal-btn btn-cancel" id="cancelBtn">Cancelar</button>
-            </div>
-            
-            <p class="warning-text">
-                ⚠️ Debes ser mayor de 18 años para acceder a contenido de casino
-            </p>
-        </div>
-    </div>
     <script src="pagina.js"></script>
 </body>
 

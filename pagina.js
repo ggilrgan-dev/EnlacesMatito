@@ -1,14 +1,17 @@
 // Variables globales
-const ageModal = document.getElementById('ageModal');
 const casinoBtn = document.getElementById('casinoBtn');
-const verifyBtn = document.getElementById('verifyBtn');
-const cancelBtn = document.getElementById('cancelBtn');
-const errorMessage = document.getElementById('errorMessage');
+const ageAlert = document.getElementById('ageAlert');
+const infoModal = document.getElementById('infoModal');
 const daySelect = document.getElementById('daySelect');
 const monthSelect = document.getElementById('monthSelect');
 const yearSelect = document.getElementById('yearSelect');
+const verifyAgeBtn = document.getElementById('verifyAgeBtn');
+const cancelAlertBtn = document.getElementById('cancelAlertBtn');
+const alertError = document.getElementById('alertError');
+const continueBtn = document.getElementById('continueBtn');
+const closeModalBtn = document.getElementById('closeModalBtn');
 
-// URL del casino
+// URL del casino - cambia esta URL por la que necesites
 const CASINO_URL = 'https://partnerbcgame.com/v66793f80';
 
 // Llenar selectores de fecha
@@ -20,6 +23,19 @@ function populateSelectors() {
         option.textContent = i.toString().padStart(2, '0');
         daySelect.appendChild(option);
     }
+
+    // Llenar meses
+    const months = [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ];
+
+    months.forEach((month, index) => {
+        const option = document.createElement('option');
+        option.value = index + 1;
+        option.textContent = month;
+        monthSelect.appendChild(option);
+    });
 
     // Llenar años (desde año actual hasta 1900)
     const currentYear = new Date().getFullYear();
@@ -39,7 +55,6 @@ function validateAge(day, month, year) {
     const monthDiff = today.getMonth() - birthDate.getMonth();
     const dayDiff = today.getDate() - birthDate.getDate();
 
-    // Si no ha cumplido años este año, restar 1
     if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
         return age - 1 >= 18;
     }
@@ -47,39 +62,55 @@ function validateAge(day, month, year) {
     return age >= 18;
 }
 
-// Mostrar mensaje de error
-function showError(message) {
-    errorMessage.textContent = message;
-    errorMessage.style.display = 'block';
-    setTimeout(() => {
-        errorMessage.style.display = 'none';
-    }, 4000);
+// Mostrar alerta
+function showAlert() {
+    ageAlert.classList.add('show');
 }
 
-// Abrir modal
-function openModal() {
-    ageModal.classList.add('show');
+// Ocultar alerta
+function hideAlert() {
+    ageAlert.classList.remove('show');
+    resetForm();
+}
+
+// Mostrar modal informativo
+function showInfoModal() {
+    infoModal.classList.add('show');
     document.body.style.overflow = 'hidden';
 }
 
-// Cerrar modal
-function closeModal() {
-    ageModal.classList.remove('show');
+// Ocultar modal informativo
+function hideInfoModal() {
+    infoModal.classList.remove('show');
     document.body.style.overflow = 'auto';
+}
 
-    // Limpiar campos
+// Mostrar error
+function showError(message = 'Debes ser mayor de 18 años para continuar') {
+    alertError.textContent = message;
+    alertError.classList.add('show');
+    setTimeout(() => {
+        alertError.classList.remove('show');
+    }, 3000);
+}
+
+// Resetear formulario
+function resetForm() {
     daySelect.value = '';
     monthSelect.value = '';
     yearSelect.value = '';
-    errorMessage.style.display = 'none';
+    alertError.classList.remove('show');
 }
 
 // Event Listeners
-casinoBtn.addEventListener('click', openModal);
-cancelBtn.addEventListener('click', closeModal);
+casinoBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    showAlert();
+});
 
-// Verificar edad
-verifyBtn.addEventListener('click', () => {
+cancelAlertBtn.addEventListener('click', hideAlert);
+
+verifyAgeBtn.addEventListener('click', () => {
     const day = parseInt(daySelect.value);
     const month = parseInt(monthSelect.value);
     const year = parseInt(yearSelect.value);
@@ -106,37 +137,46 @@ verifyBtn.addEventListener('click', () => {
 
     // Verificar edad
     if (validateAge(day, month, year)) {
-        // Es mayor de edad - redirigir
-        closeModal();
-        window.open(CASINO_URL, '_blank', 'noopener,noreferrer');
+        // Es mayor de edad - ocultar alerta y mostrar modal
+        hideAlert();
+        showInfoModal();
     } else {
-        showError('Debes ser mayor de 18 años para acceder');
+        showError('Debes ser mayor de 18 años para continuar');
     }
 });
+
+continueBtn.addEventListener('click', () => {
+    // Redirigir al casino
+    window.open(CASINO_URL, '_blank', 'noopener,noreferrer');
+    hideInfoModal();
+});
+
+closeModalBtn.addEventListener('click', hideInfoModal);
 
 // Cerrar modal al hacer clic fuera
-ageModal.addEventListener('click', (e) => {
-    if (e.target === ageModal) {
-        closeModal();
+infoModal.addEventListener('click', (e) => {
+    if (e.target === infoModal) {
+        hideInfoModal();
     }
 });
 
-// Cerrar modal con tecla Escape
+// Cerrar con tecla Escape
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && ageModal.classList.contains('show')) {
-        closeModal();
+    if (e.key === 'Escape') {
+        if (infoModal.classList.contains('show')) {
+            hideInfoModal();
+        } else if (ageAlert.classList.contains('show')) {
+            hideAlert();
+        }
     }
 });
-// Mostrar mensaje de error con animación
-function showError(message) {
-    errorMessage.textContent = message;
-    errorMessage.classList.add('show');
-    setTimeout(() => {
-        errorMessage.classList.remove('show');
-        setTimeout(() => {
-            errorMessage.style.display = 'none';
-        }, 300); // Esperar a que termine la animación
-    }, 4000);
-}
+
+// Cerrar alerta al hacer clic fuera
+document.addEventListener('click', (e) => {
+    if (!ageAlert.contains(e.target) && !casinoBtn.contains(e.target) && ageAlert.classList.contains('show')) {
+        hideAlert();
+    }
+});
+
 // Inicializar
 populateSelectors();
