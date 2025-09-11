@@ -339,7 +339,7 @@ nav {
     justify-content: center;
     align-items: center;
     z-index: 10000;
-    padding: 20px; /* Añade padding para evitar que toque los bordes */
+    padding: 20px;
     box-sizing: border-box;
 }
 
@@ -355,8 +355,8 @@ nav {
     text-align: center;
     max-width: 500px;
     width: 100%;
-    max-height: 90vh; /* Evita que se salga de la pantalla verticalmente */
-    overflow-y: auto; /* Permite scroll si el contenido es muy alto */
+    max-height: 90vh; 
+    overflow-y: auto;
     box-shadow: 0 10px 30px rgba(119, 235, 119, 0.3);
     opacity: 0;
     transform: scale(0.8) translateY(-20px);
@@ -365,14 +365,14 @@ nav {
 }
 
 .modal-title {
-    font-size: clamp(18px, 5vw, 24px); /* Tamaño responsive */
-    color: #77eb77;
+    font-size: clamp(18px, 5vw, 24px); 
+    color: #a9f0a9;
     margin-bottom: 10px;
-    text-shadow: 0 0 10px rgba(119, 235, 119, 0.5);
+    text-shadow: 0 0 10px rgb(13, 212, 13);
 }
 
 .modal-text {
-    font-size: clamp(12px, 3.5vw, 16px); /* Tamaño responsive */
+    font-size: clamp(12px, 3.5vw, 16px); 
     color: #ccc;
     margin-bottom: 25px;
     line-height: 1.6;
@@ -404,13 +404,39 @@ nav {
 }
 
 .modal-imagen-casino {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-    border-radius: 6px;
-    margin-bottom: 15px;
+    width: 250px;
+    height: 360px;
+    border-radius: 20px;
+    transition: transform 0.15s ease-out;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(171, 245, 171, 0.267);
+    border: 2px solid rgba(167, 247, 167, 0.582);
 }
 
+.modal-imagen-casino::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background: linear-gradient(135deg, rgba(119, 235, 119, 0.1), rgba(119, 235, 119, 0.05));
+    border-radius: 4px;
+    transform: translateZ(-10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.modal-imagen-casino:hover::after {
+    opacity: 1;
+}
+
+.modal-imagen-casino:hover {
+    box-shadow: 0 15px 40px rgba(119, 235, 119, 0.4);
+}
 .btn-continue {
     background: linear-gradient(135deg, #77eb77, #599c59);
     color: #000;
@@ -433,7 +459,7 @@ nav {
 
 .warning-text {
     color: #ff6b6b;
-    font-size: clamp(10px, 2.5vw, 12px); /* Tamaño responsive */
+    font-size: clamp(10px, 2.5vw, 12px);
     margin-top: 15px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

@@ -178,5 +178,72 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// Función para inicializar el efecto 3D en la imagen del casino
+function initCasino3DEffect() {
+    // Selecciona la imagen del casino
+    const casinoImage = document.querySelector('.modal-imagen-casino');
+    
+    // Verifica que la imagen existe
+    if (!casinoImage) {
+        console.warn('No se encontró la imagen del casino');
+        return;
+    }
+    
+    // Evento cuando el mouse se mueve sobre la imagen
+    casinoImage.addEventListener('mousemove', (e) => {
+        // Obtiene las dimensiones y posición de la imagen
+        const rect = casinoImage.getBoundingClientRect();
+        
+        // Calcula la posición del mouse relativa a la imagen
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Calcula el centro de la imagen
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // Calcula los ángulos de rotación basados en la posición del mouse
+        // Valores más bajos = rotación más sutil
+        const rotateX = (y - centerY) / centerY * -15; // Rotación en X (arriba/abajo)
+        const rotateY = (x - centerX) / centerX * 15;  // Rotación en Y (izquierda/derecha)
+        
+        // Calcula el efecto de profundidad
+        const translateZ = Math.abs(rotateX) + Math.abs(rotateY);
+        
+        // Aplica la transformación 3D
+        casinoImage.style.transform = `
+            perspective(1000px) 
+            rotateX(${rotateX}deg) 
+            rotateY(${rotateY}deg) 
+            translateZ(${translateZ}px)
+        `;
+    });
+    
+    // Evento cuando el mouse sale de la imagen
+    casinoImage.addEventListener('mouseleave', () => {
+        // Resetea la transformación con una animación suave
+        casinoImage.style.transform = `
+            perspective(1000px) 
+            rotateX(0deg) 
+            rotateY(0deg) 
+            translateZ(0px)
+        `;
+    });
+    
+    // Opcional: Efecto adicional al hacer click
+    casinoImage.addEventListener('mousedown', () => {
+        casinoImage.style.transform += ' scale(0.98)';
+    });
+    
+    casinoImage.addEventListener('mouseup', () => {
+        // El efecto de rotación se mantiene, solo se quita el scale
+        const currentTransform = casinoImage.style.transform;
+        casinoImage.style.transform = currentTransform.replace(' scale(0.98)', '');
+    });
+}
+
+// Inicializa el efecto cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', initCasino3DEffect);
+
 // Inicializar
 populateSelectors();
